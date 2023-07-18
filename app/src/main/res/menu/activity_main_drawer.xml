@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    android:background="@color/colorPrimary">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"/>
+        <item
+            android:id="@+id/nav_alarm"
+            android:title="Alarm"
+            android:icon="@drawable/ic_baseline_access_alarms_24"/>
+        <item
+            android:id="@+id/nav_lock"
+            android:title="Lock"
+            android:icon="@drawable/ic_baseline_lock_person_24"/>
+        <item
+            android:id="@+id/nav_RouteFinder"
+            android:title="Dont Touch My Phone"
+            android:icon="@drawable/ic_baseline_do_not_touch_24"/>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:title="Communication">
+
+            <menu>
+
+                <item
+                    android:id="@+id/nav_share"
+                    android:title="Share"
+                    android:icon="@drawable/ic_baseline_share_24"/>
+
+                <item
+                    android:id="@+id/nav_contact"
+                    android:title="Contact Us"
+                    android:icon="@drawable/ic_baseline_contact_support_24"/>
+            </menu>
+
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:title="Other">
+
+            <menu>
+
+                <item
+                    android:id="@+id/nav_privacy"
+                    android:title="Privacy Policy"
+                    android:icon="@drawable/ic_baseline_lock_person_24"/>
+                <item
+                    android:id="@+id/nav_exit"
+                    android:title="Exit"
+                    android:icon="@drawable/ic_baseline_login_24"/>
+                <item
+                    android:id="@+id/nav_logout"
+                    android:title="LogOut"
+                    android:icon="@drawable/ic_baseline_login_24"/>
+
+            </menu>
+
+        </item>
+    </group>
+</menu>

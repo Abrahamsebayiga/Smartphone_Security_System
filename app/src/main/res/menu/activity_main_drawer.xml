@@ -12,7 +12,7 @@
             android:icon="@drawable/ic_baseline_home_24"/>
         <item
             android:id="@+id/nav_alarm"
-            android:title="Alarm"
+            android:title="Ring My Phone"
             android:icon="@drawable/ic_baseline_access_alarms_24"/>
         <item
             android:id="@+id/nav_lock"
@@ -20,7 +20,7 @@
             android:icon="@drawable/ic_baseline_lock_person_24"/>
         <item
             android:id="@+id/nav_RouteFinder"
-            android:title="Dont Touch My Phone"
+            android:title="Don't Touch My Phone"
             android:icon="@drawable/ic_baseline_do_not_touch_24"/>
 
     </group>
@@ -33,7 +33,7 @@
 
                 <item
                     android:id="@+id/nav_share"
-                    android:title="Share"
+                    android:title="Share App"
                     android:icon="@drawable/ic_baseline_share_24"/>
 
                 <item

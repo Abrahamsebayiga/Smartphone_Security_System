@@ -1,5 +1,6 @@
 package com.example.pdsafe256;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityManager;
@@ -23,20 +24,20 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser currentUser;//used to store current user of account
     FirebaseAuth mAuth;//Used for firebase authentication
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(MainActivity.this,Home.class));
+            startActivity(new Intent(MainActivity.this, GoogleMaps.class));
             finish();
-        },3000);
+        }, 3000);
 
         Intent serviceIntent = new Intent(this, MyForegroundService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(serviceIntent);
-        }
+        startForegroundService(serviceIntent);
 
         foregroundServiceRunning();
     }
@@ -44,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
     public void foregroundServiceRunning() {
         ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 
-        for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
-            if (MyForegroundService.class.getName().equals(service.service.getClassName())) {
-                return;
+            for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+                if (MyForegroundService.class.getName().equals(service.service.getClassName())) {
+                    return;
+                }
             }
         }
     }
-}
+
+

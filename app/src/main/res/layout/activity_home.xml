@@ -8,6 +8,24 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/toolbar"
+        android:elevation="4dp"
+        android:background="@color/cast_seekbar_secondary_progress_color"
+        />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container"/>
+    </LinearLayout>
+
     <include
         android:id="@+id/app_bar_home"
         layout="@layout/app_bar_home"
@@ -22,4 +40,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_main_drawer" />
-</androidx.drawerlayout.widget.DrawerLayout>
+
+ </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,8 +1,11 @@
 package com.example.pdsafe256;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,7 +18,9 @@ import com.example.pdsafe256.databinding.ActivityHomeBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+
 public class Home extends AppCompatActivity {
+    ImageView settings,phonelock,Gmaps,Dwipe,Antisnatch,RemoveApp;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -23,21 +28,47 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_home);
 
-        com.example.pdsafe256.databinding.ActivityHomeBinding binding = ActivityHomeBinding.inflate(getLayoutInflater());
+     ActivityHomeBinding binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        setSupportActionBar(binding.appBarHome.toolbar);
-        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        settings = findViewById(R.id.settingsID);
+        phonelock = findViewById(R.id.phonelockID);
+        Gmaps = findViewById(R.id.mapsID);
+        Dwipe = findViewById(R.id.WipeID);
+        Antisnatch = findViewById(R.id.AntisnatchID);
+        RemoveApp = findViewById(R.id.uninstallID);
+
+        settings.setOnClickListener(view -> {
+            Intent inte = new Intent(Home.this,Settings.class);
+            startActivity(inte);
         });
+
+        phonelock.setOnClickListener(view -> {
+            Intent inte = new Intent(Home.this,PhoneLock.class);
+            startActivity(inte);
+        });
+
+        Gmaps.setOnClickListener(view -> {
+            Intent inte = new Intent(Home.this,GoogleMaps.class);
+            startActivity(inte);
+        });
+
+        Dwipe.setOnClickListener(view -> {
+            Intent inte = new Intent(Home.this,activity_device_wipe.class);
+            startActivity(inte);
+        });
+
+        RemoveApp.setOnClickListener(view -> {
+           Intent inte =  new Intent(Intent.ACTION_DELETE);
+           inte.setData(Uri.parse("package:com.example.pdsafe256"));
+           startActivity(inte);
+        });
+
+        setSupportActionBar(binding.appBarHome.toolbar);
+        binding.appBarHome.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

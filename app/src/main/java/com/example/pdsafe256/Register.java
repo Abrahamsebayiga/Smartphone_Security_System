@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Register extends AppCompatActivity {
-    EditText name, contact, email, username, pass, confirmPass;
+    EditText name, contact, email, pass, confirmPass;
     Button registerButton, loginButton;
     private FirebaseAuth mAuth;//Used for firebase authentication
 

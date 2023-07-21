@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
 
             <TextView
@@ -20,7 +20,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
                 android:text="PSafe"
                 android:textColor="@color/black"
@@ -48,7 +47,6 @@
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -69,6 +67,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1">
                     <RelativeLayout
+                        android:id="@+id/media"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white">
@@ -77,21 +76,21 @@
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/bus"
+                            android:layout_below="@id/WipeID"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Upload Media"
+                            android:text="Phone Wipe"
                             android:textColor="@color/black"
                             android:textSize="24sp"
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/bus"
+                            android:id="@+id/WipeID"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/ic_baseline_perm_media_24" />
+                            app:srcCompat="@drawable/baseline_phonelink_erase_24" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -109,7 +108,7 @@
                             android:id="@+id/AntiSnatch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/imageView3"
+                            android:layout_below="@id/AntisnatchID"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Anti Snatch"
@@ -118,7 +117,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/imageView3"
+                            android:id="@+id/AntisnatchID"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -151,7 +150,7 @@
                             android:id="@+id/Lockphone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/bus1"
+                            android:layout_below="@id/phonelockID"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Lock My Phone"
@@ -160,7 +159,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/bus1"
+                            android:id="@+id/phonelockID"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -182,7 +181,7 @@
                             android:id="@+id/FindonMap"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/train"
+                            android:layout_below="@id/mapsID"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Find on Map"
@@ -191,7 +190,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/train"
+                            android:id="@+id/mapsID"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -223,7 +222,7 @@
                             android:id="@+id/Appsettings"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/cycle"
+                            android:layout_below="@id/settingsID"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Settings"
@@ -232,7 +231,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/cycle"
+                            android:id="@+id/settingsID"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
@@ -255,7 +254,7 @@
                             android:id="@+id/removeApp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/airplane"
+                            android:layout_below="@id/uninstallID"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:text="Remove App"
@@ -264,7 +263,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/airplane"
+                            android:id="@+id/uninstallID"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"

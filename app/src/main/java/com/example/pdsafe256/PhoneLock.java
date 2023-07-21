@@ -1,132 +1,85 @@
 package com.example.pdsafe256;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.Random;
+import androidx.appcompat.app.AppCompatActivity;
 
-    public class PhoneLock extends AppCompatActivity {
+public class PhoneLock extends AppCompatActivity implements View.OnClickListener{
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_phone_lock);
+    private Button lock, disable, enable;
+    public static final int RESULT_ENABLE = 11;
+    private DevicePolicyManager devicePolicyManager;
+     ActivityManager activityManager;
+    private ComponentName compName;
 
-            if(ContextCompat.checkSelfPermission(PhoneLock.this,Manifest.permission.READ_SMS)==PackageManager.PERMISSION_DENIED){
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_SMS}, 0);
-            }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_phone_lock);
 
+        devicePolicyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        compName = new ComponentName(this, MyAdmin.class);
 
-            Button button13 = (Button) findViewById(R.id.button13);
-            button13.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View v) {
-                    enableAndGenerateWipeKey(getApplicationContext());
-                }
-            });
-            Button button14 = (Button) findViewById(R.id.button14);
-            button14.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View v) {
-                    disableWipeKey(getApplicationContext());
-                }
-            });
-            Button button15 = (Button) findViewById(R.id.button15);
-            button15.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View v) {
-                    getCurrentWipeKey(getApplicationContext());
-                }
-            });
-            Button button16 = (Button) findViewById(R.id.button16);
-            button16.setOnClickListener(new View.OnClickListener() {
-
-                public void onClick(View v) {
-                    howToUse(getApplicationContext());
-                }
-            });
-
-
-        }
-        public void howToUse(Context context){
-            Toast infotoast=Toast.makeText(context,"To lock your device, send SMS: lock<secretkey>\nTo wipe your device, send SMS: wipe<secretkey>", Toast.LENGTH_LONG);
-            infotoast.show();
-            infotoast.show();
-
-        }
-
-        public static Boolean checkAdmin(DevicePolicyManager device_policy_manager, ComponentName device_admin_receiver){
-            if (device_policy_manager.isAdminActive(device_admin_receiver)){
-                return Boolean.TRUE;
-            }
-            return Boolean.FALSE;
-        }
-        public void manageAdmin(Context context, ComponentName device_admin_receiver){
-            Intent intent = new Intent();
-            intent.setComponent(new ComponentName("com.android.settings","com.android.settings.DeviceAdminSettings"));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-        }
-
-        public void enableAndGenerateWipeKey(Context context){
-
-            DevicePolicyManager device_policy_manager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-            ComponentName device_admin_receiver = new ComponentName(context, MyDeviceAdminReceiver.class);
-            if(checkAdmin(device_policy_manager,device_admin_receiver)){
-                SharedPreferencesGetSet myobj=new SharedPreferencesGetSet();
-                Random random=new Random();
-                Long randomKey=0L;
-                for (int x=0;x<10000;x++){
-                    //No more than 10000 iterations for this
-                    randomKey=random.nextLong()% 10000000000L;
-                    if (randomKey>1000000000L){break;}
-                }
-                if (randomKey==0L){
-                    Toast.makeText(context,"Failed to generate a secret key!!!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    myobj.setKey(randomKey);
-                    Toast.makeText(context,"Your secret key is: "+Long.toString(randomKey), Toast.LENGTH_LONG).show();
-                }
-            }
-            else {
-                manageAdmin(context,device_admin_receiver);
-            }
-
-
-        }
-
-        public void getCurrentWipeKey(Context context){
-            SharedPreferencesGetSet myobj=new SharedPreferencesGetSet();
-            if (myobj.getKey()==0){
-                Toast.makeText(context,"You have not set your secret key yet!!!", Toast.LENGTH_LONG).show();
-            }
-            else {
-                Toast.makeText(context,"Your secret key is: "+Long.toString(myobj.getKey()), Toast.LENGTH_LONG).show();
-            }
-        }
-        public void disableWipeKey(Context context){
-            SharedPreferencesGetSet myobj=new SharedPreferencesGetSet();
-            myobj.setKey(0L);
-            Toast.makeText(context,"Disabled remote device wipe!!!", Toast.LENGTH_SHORT).show();
-        }
-
+        lock =  findViewById(R.id.lock);
+        enable = findViewById(R.id.enableBtn);
+        disable =  findViewById(R.id.disableBtn);
+        lock.setOnClickListener(this);
+        enable.setOnClickListener(this);
+        disable.setOnClickListener(this);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean isActive = devicePolicyManager.isAdminActive(compName);
+        disable.setVisibility(isActive ? View.VISIBLE : View.GONE);
+        enable.setVisibility(isActive ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == lock) {
+            boolean active = devicePolicyManager.isAdminActive(compName);
+
+            if (active) {
+                devicePolicyManager.lockNow();
+            } else {
+                Toast.makeText(this, "You need to enable the Admin Device Features", Toast.LENGTH_SHORT).show();
+            }
+
+        } else if (view == enable) {
+
+            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, compName);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Additional text explaining why we need this permission");
+            startActivityForResult(intent, RESULT_ENABLE);
+
+        } else if (view == disable) {
+            devicePolicyManager.removeActiveAdmin(compName);
+            disable.setVisibility(View.GONE);
+            enable.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RESULT_ENABLE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Toast.makeText(PhoneLock.this, "You have enabled the Admin Device features", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(PhoneLock.this, "Problem to enable the Admin Device features", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+}

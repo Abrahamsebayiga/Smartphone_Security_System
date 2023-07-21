@@ -18,13 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button ButtonForgotpass, registerButton, loginButton;
-    TextInputEditText email, password;
-    TextView textView;
-    FirebaseUser currentUser;//used to store current user of account
-    FirebaseAuth mAuth;//Used for firebase authentication
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(MainActivity.this, GoogleMaps.class));
+            startActivity(new Intent(MainActivity.this, Register.class));
             finish();
-        }, 3000);
+        }, 2000);
 
         Intent serviceIntent = new Intent(this, MyForegroundService.class);
         startForegroundService(serviceIntent);

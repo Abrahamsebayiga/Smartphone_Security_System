@@ -15,9 +15,9 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:id="@+id/backArrowID"
             android:padding="14dp"
-            android:src="@drawable/arrow_back_24"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/arrow_back_24" />
 
         <TextView
             android:id="@+id/SettingsText"
@@ -116,8 +116,8 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:switchMinWidth="40dp"
@@ -150,8 +150,8 @@
                         android:layout_toEndOf="@id/notification_icon"/>
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:switchMinWidth="50dp"
@@ -320,7 +320,6 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-
                 </RelativeLayout>
 
                 <!--FAQs-->
@@ -430,6 +429,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/logoutID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_keyboard_arrow_right_24"

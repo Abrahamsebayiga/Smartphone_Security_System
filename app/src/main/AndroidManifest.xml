@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pdsafe256">
 
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
-    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
     <uses-feature android:name="android.hardware.location.gps" />
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -23,6 +25,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDSafe256"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
         <activity
             android:name=".RemoteWipeActivity"
             android:exported="false" />
@@ -34,14 +40,12 @@
         <activity
             android:name=".activity_device_wipe"
             android:exported="false" />
-
         <activity
             android:name=".PhoneLock"
             android:exported="false" />
         <activity
             android:name=".GoogleMaps"
             android:exported="false" />
-
         <activity
             android:name=".Settings"
             android:exported="false" />
@@ -66,17 +70,19 @@
             </intent-filter>
         </activity>
 
-
         <receiver
-            android:name=".MyAdmin" android:permission='android.permission.BIND_DEVICE_ADMIN'
-            android:exported="true">
-            <meta-data android:name="android.app.device_admin"
-                android:resource="@xml/policies"/>
+            android:name=".MyAdmin"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/policies" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
 

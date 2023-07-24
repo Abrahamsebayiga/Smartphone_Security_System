@@ -46,6 +46,12 @@ public class Login extends AppCompatActivity {
                 finish();
             });
 
+        ButtonForgotpass.setOnClickListener(view -> {
+            Intent registerIntent = new Intent(getApplicationContext(), ForgotPassword.class);
+            startActivity(registerIntent);
+            finish();
+        });
+
         loginButton.setOnClickListener(view -> {
             String Email, pwd;
             Email = String.valueOf(email.getText());

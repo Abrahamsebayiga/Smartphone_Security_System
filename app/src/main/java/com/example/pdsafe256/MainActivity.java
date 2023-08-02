@@ -46,4 +46,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+//Build was configured to prefer settings repositories over project repositories but repository 'Google' was added by build file 'build.gradle'

@@ -24,4 +24,11 @@
     <color name="notifications">#13B2C3</color>
     <color name="security">#D95F69</color>
     <color name="private_account">#E6A326</color>
+    <color name="colorBlueT">#6428a2cf</color>
+    <!--<color name="colorPurple">#A130FF</color>-->
+    <color name="colorPurpleT">#64a130ff</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+
+
 </resources>

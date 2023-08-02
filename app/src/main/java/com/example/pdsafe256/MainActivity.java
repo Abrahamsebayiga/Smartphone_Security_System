@@ -1,20 +1,14 @@
 package com.example.pdsafe256;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,5 +39,3 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-//Build was configured to prefer settings repositories over project repositories but repository 'Google' was added by build file 'build.gradle'
